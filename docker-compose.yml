@@ -11,18 +11,5 @@ services:
       - scanandgo_db:/db/scanandgo_psql_db/data
     ports:
       - '5464:5432'
-  redis-db:
-    container_name: scanandgo_redis_db
-    image: 'redis:alpine' # use latest official postgres version
-    environment:
-      - REDIS_REPLICATION_MODE=master
-      # - REDIS_HOST=test-user
-      # - REDIS_PORT=message-db
-      # - REDIS_PASSWORD=password
-    volumes:
-      - scanandgo_redis_db:/db/scanandgo_redis_db/data
-    ports:
-      - '6390:6379'
 volumes:
   scanandgo_db: {}
-  scanandgo_redis_db: {}
