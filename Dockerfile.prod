@@ -1,0 +1,21 @@
+# Set node version
+FROM node:14.10.1
+
+# Pick a beutifull temporary folder name
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+# Copy package and yarn lock so we can quickly do the install then we copy the bulk
+COPY package.json ./
+COPY yarn.lock ./
+RUN yarn
+RUN yarn global add pm2
+
+# Copy the rest of the bulk
+COPY . ./
+RUN yarn build
+
+# Start it up
+CMD ["pm2-runtime", "start", "dist/index.js", "-i", "max"]
+# CMD ["yarn", "dev"]
