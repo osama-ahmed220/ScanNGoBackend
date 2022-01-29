@@ -7,7 +7,7 @@
     "up": "docker-compose up",
     "dev": "ts-node-dev src/index.ts --transpile-only",
     "dev:ram": "nodemon src/index.ts",
-    "build": "rimraf ./dist && tsc && cp -r ./src/assets/ ./dist/assets/ && cp -r ./src/templates/emails/ ./dist/templates/",
+    "build": "rimraf ./dist && tsc",
     "create:migration": "typeorm migration:create --dir src/migrations --name ",
     "docker:build": "docker build -t backend:dev .",
     "docker:run": "docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 8080:8080 -e CHOKIDAR_USEPOLLING=true backend:dev",
